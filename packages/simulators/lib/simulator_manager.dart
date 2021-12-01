@@ -47,8 +47,9 @@ class IosSimulatorManager {
 
     final String output = runtimeListResult.stdout as String;
     if (!output.contains(runtime)) {
+      print(output);
       throw Exception('Mac does not have the requested $runtime '
-          'available for simulators. Please use XCode to install.');
+          'available for simulators. Please use Xcode to install.');
     }
 
     // Check if the device is available.
@@ -62,8 +63,9 @@ class IosSimulatorManager {
 
     final String deviceListOutput = deviceListResult.stdout as String;
     if (!deviceListOutput.contains(device)) {
+      print(deviceListOutput);
       throw Exception('Mac does not have the requested device type $device '
-          'available for simulators. Please use XCode to install.');
+          'available for simulators. Please use Xcode to install.');
     }
 
     // Prepate device type argument. It should look like:
@@ -147,6 +149,7 @@ class IosSimulatorManager {
 
     final int indexOfPhone = listOfPhones.indexOf(phone);
     if (indexOfPhone == -1) {
+      print(simulatorsList);
       throw Exception('Simulator of $phone is not available for iOS version '
           '${osMajorVersion}.${osMinorVersion}');
     }
@@ -177,6 +180,7 @@ class IosSimulatorManager {
         output.contains('-- iOS ${osMajorVersion}.${osMinorVersion} --');
 
     if (!versionCheck) {
+      print(output);
       throw Exception(
           'Requested simulator version iOS ${osMajorVersion}.${osMinorVersion} '
           'is not available.');
